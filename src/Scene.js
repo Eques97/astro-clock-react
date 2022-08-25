@@ -1,35 +1,21 @@
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import Earth from './Earth'
+import Sun from './Sun';
 
-function Box(props) {
-    // This reference will give us direct access to the mesh
-    const mesh = useRef()
-    // Set up state for the hovered and active state
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
-    // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame((state, delta) => (mesh.current.rotation.x += 0.01))
-    // Return view, these are regular three.js elements expressed in JSX
-    return (
-      <mesh
-        {...props}
-        ref={mesh}
-        scale={active ? 1.5 : 1}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      </mesh>
-    )
-}
-
-export default function Scene() {
+export default function Scene({timestamps}) {
+  console.log(timestamps);
+  const SECONDS_IN_YEAR = 31558149.7635456;
+  const SECONDS_IN_SIDEREAL_DAY = 86164.1;
+  const dayGauge = timestamps % SECONDS_IN_SIDEREAL_DAY / SECONDS_IN_SIDEREAL_DAY;
+  const yearGauge = timestamps % SECONDS_IN_YEAR / SECONDS_IN_YEAR;
+  console.log(dayGauge, yearGauge);
   return (
-    <Canvas>
-    <pointLight position={[10, 10, 10]} />
-    <Box position={[-1.2, 0, 0]} />
-    <Box position={[1.2, 0, 0]} />
+    <div id="canvas-container" style={{ width: 1080, height: 720, backgroundColor: 'black' }} >
+    <Canvas camera={{position: [-15, 0, 0]}} >
+    <Earth rotation={[0, dayGauge * Math.PI, 0]} />
+    <Sun rotation={[0, yearGauge * Math.PI * 2, 0]} />
     </Canvas>
+    </div>
   )
 }
