@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+/* remove scroll in wide view */
+#canvas-container > div:nth-child(2) {
+  height: 90vh !important;
+}
