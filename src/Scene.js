@@ -9,6 +9,7 @@ import "rsuite/dist/rsuite.min.css";
 export default function Scene({}) {
   const SOLSTICE_OFFSET = 14774400;
   const [date, setDate] = useState(new Date());
+  const [timeFactor, setTimeFactor] = useState(1e+6);
 
   const handleChange = (e) => {
     if (e) setDate(e);
@@ -40,8 +41,8 @@ export default function Scene({}) {
       <Canvas camera={{ position: [-15, 0, 0] }}>
         <CameraController />
         <ambientLight intensity={0.01} />
-        <Sun timestamps={getTimeStamps()} />
-        <Earth timestamps={getTimeStamps()} />
+        <Sun timestamps={getTimeStamps()} timeFactor={timeFactor} />
+        <Earth timestamps={getTimeStamps()} timeFactor={timeFactor} />
       </Canvas>
     </div>
   );
