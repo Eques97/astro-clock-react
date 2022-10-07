@@ -9,11 +9,11 @@ export default function Earth({timestamps, timeFactor}) {
     const textureMap = useLoader(TextureLoader, earthImg);
 
     const RADIUS = 6.371;
-    const AXIAL_TILT = 23.439281;
+    const AXIAL_TILT = 23.439281 * 0;
     const SECONDS_IN_SIDEREAL_DAY = 86164.1;
 
     useFrame((state, delta) => {
-        timestamps += delta * timeFactor;
+        // timestamps += delta * timeFactor;
         const dayGauge = timestamps % SECONDS_IN_SIDEREAL_DAY / SECONDS_IN_SIDEREAL_DAY;
         childMesh.current.rotation.y = dayGauge * Math.PI * 2;
     });
@@ -21,7 +21,7 @@ export default function Earth({timestamps, timeFactor}) {
     return (
     <group rotation={[0, 0, AXIAL_TILT / 180 * Math.PI]}>
     <mesh ref={childMesh} >
-    <sphereGeometry args={[RADIUS, 32, 32]} />
+    <sphereGeometry args={[RADIUS, 128, 128]} />
     <meshStandardMaterial map={textureMap} />
     </mesh>            
     </group>    
