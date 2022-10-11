@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
-import earthImg from './earth.png'
 
 export default function Earth({timestamps}) {
 
     const childMesh = useRef();
-    const textureMap = useLoader(TextureLoader, earthImg);
+    const textureMap = useLoader(TextureLoader, '/earth.png');
 
     const RADIUS = 6.371;
     const AXIAL_TILT = 23.439281 * 0;
@@ -23,6 +22,6 @@ export default function Earth({timestamps}) {
     <sphereGeometry args={[RADIUS, 128, 128]} />
     <meshStandardMaterial map={textureMap} />
     </mesh>            
-    </group>    
+    </group>
     )
 }
