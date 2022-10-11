@@ -1,4 +1,3 @@
-import "./App.css"
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import CameraController from "./CameraController";
@@ -7,14 +6,11 @@ import Sun from "./Sun";
 import { DatePicker, SelectPicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { unitData } from "./DataExport";
-import { set } from "rsuite/esm/utils/dateUtils";
 import Clock from "./Clock";
 
 export default function App({}) {
   const SOLSTICE_OFFSET = 14774400;
-  // const [date, setDate] = useState(new Date());
   const [timestamps, setTimestamps] = useState(0);
-  // const [timeFactor, setTimeFactor] = useState(1);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -27,18 +23,9 @@ export default function App({}) {
     if (e) setTimestamps(e.getTime());
   };
 
-  // const getTimeStamps = () => {
-  //   let timestamps = date.getTime() / 1000;
-  //   timestamps -= SOLSTICE_OFFSET;
-  //   return timestamps;
-  // };
-
-  // const handleSelect = (e) => {
-  //   if (e) setTimeFactor(e);
-  // };
-
   return (
-    <div id="main" style={{background:"black"}}>
+    <div id="main" style={{ position:"relative", width:"100vw", height:"100vh", overflow:"hidden", backgroundColor:"black" }}>
+    <div style={{position:"absolute", right:0, color:"white"}}>
     <DatePicker
     format="yyyy-MM-dd HH:mm:ss"
     calendarDefaultDate={new Date("2022-02-02 00:00:00")}
@@ -51,14 +38,9 @@ export default function App({}) {
     style={{ width: 260 }}
     onChange={(e) => handleChange(e)}
     />
+    </div>
     <Clock timestamps={timestamps} />
-    {/* <SelectPicker
-    data={unitData}
-    searchable={false}
-    style={{ width: 224 }}
-    onChange={(e) => handleSelect(e)}
-    /> */}
-    <div id="canvas-container" style={{ width: "100%", height: "100vh", backgroundColor: "black" }}>
+    <div id="canvas" style={{ width: "100%", height: "100%", display: "block", backgroundColor: "black" }}>
     <Canvas camera={{ position: [-15, 0, 0] }}>
     <CameraController />
     <ambientLight intensity={0.01} />
