@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useFrame, useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 
-export default function Earth({timestamps}) {
+export default function Earth({timestamps, timefactor}) {
 
     const childMesh = useRef();
     const textureMap = useLoader(TextureLoader, '/earth.png');
@@ -12,6 +12,7 @@ export default function Earth({timestamps}) {
     const SECONDS_IN_SIDEREAL_DAY = 86164.1;
 
     useFrame((state, delta) => {
+        timestamps += delta * timefactor;
         const dayGauge = timestamps % SECONDS_IN_SIDEREAL_DAY / SECONDS_IN_SIDEREAL_DAY;
         childMesh.current.rotation.y = dayGauge * Math.PI * 2;
     });

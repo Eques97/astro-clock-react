@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber';
 
-export default function Sun({timestamps}) {
+export default function Sun({timestamps, timefactor}) {
 
   const childMesh = useRef();
 
@@ -9,6 +9,7 @@ export default function Sun({timestamps}) {
   const SECONDS_IN_YEAR = 31558149.7635456;
 
   useFrame((state, delta) => {
+    timestamps += delta * timefactor;
     const yearGauge = timestamps % SECONDS_IN_YEAR / SECONDS_IN_YEAR;
     childMesh.current.rotation.y = yearGauge * Math.PI * 2;
   })
@@ -17,6 +18,10 @@ export default function Sun({timestamps}) {
     <group rotation={[0, 0, -AXIAL_TILT / 180 * Math.PI]}>
     <group ref={childMesh}>
     <directionalLight position={[-1, 0, 0]}/>
+    {/* <mesh position={[-1000, 0, 0]}>
+    <sphereGeometry args={[50, 128, 128]} />
+    <meshBasicMaterial/>
+    </mesh> */}
     </group>
     </group>
   )
