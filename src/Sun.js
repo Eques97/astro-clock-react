@@ -18,10 +18,10 @@ export default function Sun({timestamps, timefactor}) {
     <group rotation={[0, 0, -AXIAL_TILT / 180 * Math.PI]}>
     <group ref={childMesh}>
     <directionalLight position={[-1, 0, 0]}/>
-    {/* <mesh position={[-1000, 0, 0]}>
-    <sphereGeometry args={[50, 128, 128]} />
+    <mesh position={[-148560, 0, 0]}>
+    <sphereGeometry args={[696.340, 16, 16]} />
     <meshBasicMaterial/>
-    </mesh> */}
+    </mesh>
     </group>
     </group>
   )

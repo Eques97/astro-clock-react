@@ -36,7 +36,7 @@ export default function App() {
     </div>
     <Clock baseTimestamps={timestamps} timefactor={timefactor} />
     <div id="canvas" style={{ width: "100%", height: "100%", display: "block", backgroundColor: "black" }}>
-    <Canvas camera={{ position: [-15, 0, 0] }}>
+    <Canvas camera={{ position: [-50, 0, 0], fov: 15, far: 150000 }}>
     {/* <Space/> */}
     <CameraController />
     <ambientLight intensity={0.01} />
