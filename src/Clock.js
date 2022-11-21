@@ -11,6 +11,6 @@ export default function Clock({baseTimestamps, timefactor}) {
     },[baseTimestamps, timefactor]);
     const date = new Date(timestamps);
     return (
-    <div style={{position:"fixed", textAlign:"center", left:0, color:"white", fontSize:"100%", zIndex: 1}}>{date.toString()}</div>
+    <div style={{position:"fixed", textAlign:"center", left:0, right:0, bottom:0, color:"white", fontSize:"100%", zIndex:1, margin:20}}>{date.toString()}</div>
     )
 }

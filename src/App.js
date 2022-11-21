@@ -20,7 +20,7 @@ export default function App() {
   };
   return (
     <div id="main" style={{ position:"relative", width:"100vw", height:"100vh", overflow:"hidden", backgroundColor:"black" }}>
-    <div style={{position:"absolute", right:0, color:"white"}}>
+    <div style={{position:"absolute", textAlign:"center", left:0, right:0, top:0, color:"white"}}>
     <DatePicker
     format="yyyy-MM-dd HH:mm:ss"
     calendarDefaultDate={initdate}
