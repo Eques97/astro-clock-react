@@ -5,7 +5,7 @@ import { TextureLoader } from 'three';
 export default function Earth({timestamps, timefactor}) {
 
     const childMesh = useRef();
-    const textureMap = useLoader(TextureLoader, '/earth.png');
+    const textureMap = useLoader(TextureLoader, 'earth.png');
 
     const RADIUS = 6.371;
     const AXIAL_TILT = 23.439281 * 0;
