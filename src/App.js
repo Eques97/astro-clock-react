@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import CameraController from "./CameraController";
 import Earth from "./Earth";
 import Sun from "./Sun";
@@ -42,6 +43,9 @@ export default function App() {
     <ambientLight intensity={0.01} />
     <Sun timestamps={timestamps / 1000 - SOLSTICE_OFFSET} timefactor={timefactor} />
     <Earth timestamps={timestamps / 1000 - SOLSTICE_OFFSET} timefactor={timefactor} />
+    <EffectComposer>
+    <Bloom mipmapBlur luminanceThreshold={1} />
+    </EffectComposer>
     </Canvas>
     </div>
     </div>

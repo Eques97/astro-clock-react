@@ -20,7 +20,7 @@ export default function Sun({timestamps, timefactor}) {
     <directionalLight position={[-1, 0, 0]}/>
     <mesh position={[-148560, 0, 0]}>
     <sphereGeometry args={[696.340, 16, 16]} />
-    <meshBasicMaterial/>
+    <meshStandardMaterial emissive="white" emissiveIntensity={20} toneMapped={false} />
     </mesh>
     </group>
     </group>
